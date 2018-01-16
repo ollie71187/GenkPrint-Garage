@@ -1,0 +1,123 @@
+﻿@model IEnumerable<GenkPrintMVC_v0._5.Models.Sticker>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-responsive">
+    <tr>  
+        <th>
+            @Html.DisplayNameFor(model => model.width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CutMethod.cutmethod_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryMethod.delivery_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LaminationMethod.lamination_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Material.meterial_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintingMode.printing_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority.priority_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shape.shape_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDatetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeleteBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeleteDatetime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>     
+        <td>
+            @Html.DisplayFor(modelItem => item.width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CutMethod.cutmethod_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryMethod.delivery_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LaminationMethod.lamination_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material.material_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintingMode.printing_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority.priority_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shape.shape_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDelete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDatetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeleteBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeleteDatetime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StikerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StikerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StikerId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,1196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="genkPrintDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar(max)" />
+          <Property Name="BranchCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CreditTransLog">
+          <Key>
+            <PropertyRef Name="TrnsId" />
+            <PropertyRef Name="CurrId" />
+            <PropertyRef Name="CreateDateTime" />
+          </Key>
+          <Property Name="TrnsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrId" Type="int" Nullable="false" />
+          <Property Name="CurrCredit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DeductCredit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CurrCreditAmount">
+          <Key>
+            <PropertyRef Name="CurrId" />
+          </Key>
+          <Property Name="CurrId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="CurrCredit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LastCredit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerAddress1" Type="varchar" MaxLength="150" />
+          <Property Name="CustomerAddress2" Type="varchar" MaxLength="150" />
+          <Property Name="Poskod" Type="int" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CutMethod">
+          <Key>
+            <PropertyRef Name="cutmethod_Id" />
+          </Key>
+          <Property Name="cutmethod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cutmethod_code" Type="varchar" MaxLength="50" />
+          <Property Name="cutmethod_name" Type="varchar" MaxLength="50" />
+          <Property Name="cutmethod_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Createby" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="Deleteby" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DeliveryMethod">
+          <Key>
+            <PropertyRef Name="delivery_Id" />
+          </Key>
+          <Property Name="delivery_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delivery_code" Type="varchar" MaxLength="50" />
+          <Property Name="delivery_name" Type="varchar" MaxLength="50" />
+          <Property Name="delivery_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="ShipDate" Type="date" />
+          <Property Name="ShipVia" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LaminationMethod">
+          <Key>
+            <PropertyRef Name="lamination_id" />
+          </Key>
+          <Property Name="lamination_id" Type="int" Nullable="false" />
+          <Property Name="lamination_code" Type="varchar" MaxLength="50" />
+          <Property Name="lamination_name" Type="varchar" MaxLength="50" />
+          <Property Name="lamination_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Createby" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="meterial_code" Type="varchar" MaxLength="50" />
+          <Property Name="material_name" Type="varchar" MaxLength="50" />
+          <Property Name="material_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="datetime" />
+          <Property Name="DeletedBy" Type="varchar" MaxLength="50" />
+          <Property Name="DeletedDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="int" Nullable="false" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="OrderQty" Type="int" />
+          <Property Name="SalesDiscount" Type="decimal" Precision="2" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PrintingMode">
+          <Key>
+            <PropertyRef Name="printing_id" />
+          </Key>
+          <Property Name="printing_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="printing_code" Type="varchar" MaxLength="50" />
+          <Property Name="printing_name" Type="varchar" MaxLength="50" />
+          <Property Name="printing_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Createby" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="Deleteby" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="priority_Id" />
+          </Key>
+          <Property Name="priority_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority_code" Type="varchar" MaxLength="50" />
+          <Property Name="priority_name" Type="varchar" MaxLength="50" />
+          <Property Name="priority_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="ProductCatId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductCatId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductDesc" Type="varchar" MaxLength="150" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="ProductPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AgentPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CustomerPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCatId" />
+          </Key>
+          <Property Name="ProductCatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCatCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductCatName" Type="nvarchar(max)" />
+          <Property Name="ProductCatDesc" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductsubCategory">
+          <Key>
+            <PropertyRef Name="ProductsubCatId" />
+          </Key>
+          <Property Name="ProductsubCatId" Type="int" Nullable="false" />
+          <Property Name="ProductCatId" Type="int" />
+          <Property Name="ProductsubCatCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductsubCatName" Type="nvarchar(max)" />
+          <Property Name="ProductsubCatDesc" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Shape">
+          <Key>
+            <PropertyRef Name="shape_Id" />
+          </Key>
+          <Property Name="shape_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shape_code" Type="varchar" MaxLength="50" />
+          <Property Name="shape_name" Type="varchar" MaxLength="50" />
+          <Property Name="shape_desc" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Sticker">
+          <Key>
+            <PropertyRef Name="StikerId" />
+          </Key>
+          <Property Name="StikerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="material_id" Type="int" />
+          <Property Name="shape_id" Type="int" />
+          <Property Name="printing_id" Type="int" />
+          <Property Name="cutmethod_Id" Type="int" />
+          <Property Name="lamination_id" Type="int" />
+          <Property Name="delivery_Id" Type="int" />
+          <Property Name="priority_Id" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDatetime" Type="datetime" />
+          <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
+          <Property Name="DeleteDatetime" Type="datetime" />
+          <Property Name="width" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="hight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <Association Name="FK_CreditTransLog_CurrCreditAmount">
+          <End Role="CurrCreditAmount" Type="Self.CurrCreditAmount" Multiplicity="1" />
+          <End Role="CreditTransLog" Type="Self.CreditTransLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrCreditAmount">
+              <PropertyRef Name="CurrId" />
+            </Principal>
+            <Dependent Role="CreditTransLog">
+              <PropertyRef Name="CurrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsubCategory_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="ProductsubCategory" Type="Self.ProductsubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCatId" />
+            </Principal>
+            <Dependent Role="ProductsubCategory">
+              <PropertyRef Name="ProductCatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_CutMethod">
+          <End Role="CutMethod" Type="Self.CutMethod" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CutMethod">
+              <PropertyRef Name="cutmethod_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="cutmethod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_DeliveryMethod">
+          <End Role="DeliveryMethod" Type="Self.DeliveryMethod" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryMethod">
+              <PropertyRef Name="delivery_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="delivery_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_LaminationMethod">
+          <End Role="LaminationMethod" Type="Self.LaminationMethod" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LaminationMethod">
+              <PropertyRef Name="lamination_id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="lamination_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="material_id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_PrintingMode">
+          <End Role="PrintingMode" Type="Self.PrintingMode" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintingMode">
+              <PropertyRef Name="printing_id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="printing_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="priority_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="priority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_Shape">
+          <End Role="Shape" Type="Self.Shape" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="shape_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="shape_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="genkPrintDbModelStoreContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrCreditAmount" EntityType="Self.CurrCreditAmount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CutMethod" EntityType="Self.CutMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryMethod" EntityType="Self.DeliveryMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LaminationMethod" EntityType="Self.LaminationMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintingMode" EntityType="Self.PrintingMode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsubCategory" EntityType="Self.ProductsubCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shape" EntityType="Self.Shape" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sticker" EntityType="Self.Sticker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditTransLog" EntityType="Self.CreditTransLog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CreditTransLog].[TrnsId] AS [TrnsId], 
+    [CreditTransLog].[CurrId] AS [CurrId], 
+    [CreditTransLog].[CurrCredit] AS [CurrCredit], 
+    [CreditTransLog].[DeductCredit] AS [DeductCredit], 
+    [CreditTransLog].[CreateDateTime] AS [CreateDateTime], 
+    [CreditTransLog].[DeleteDateTime] AS [DeleteDateTime]
+    FROM [dbo].[CreditTransLog] AS [CreditTransLog]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CreditTransLog_CurrCreditAmount" Association="Self.FK_CreditTransLog_CurrCreditAmount">
+            <End Role="CurrCreditAmount" EntitySet="CurrCreditAmount" />
+            <End Role="CreditTransLog" EntitySet="CreditTransLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsubCategory_ProductCategory" Association="Self.FK_ProductsubCategory_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="ProductsubCategory" EntitySet="ProductsubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_CutMethod" Association="Self.FK_Sticker_CutMethod">
+            <End Role="CutMethod" EntitySet="CutMethod" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_DeliveryMethod" Association="Self.FK_Sticker_DeliveryMethod">
+            <End Role="DeliveryMethod" EntitySet="DeliveryMethod" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_LaminationMethod" Association="Self.FK_Sticker_LaminationMethod">
+            <End Role="LaminationMethod" EntitySet="LaminationMethod" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_Material" Association="Self.FK_Sticker_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_PrintingMode" Association="Self.FK_Sticker_PrintingMode">
+            <End Role="PrintingMode" EntitySet="PrintingMode" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_Priority" Association="Self.FK_Sticker_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_Shape" Association="Self.FK_Sticker_Shape">
+            <End Role="Shape" EntitySet="Shape" />
+            <End Role="Sticker" EntitySet="Sticker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="genkPrintDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CurrCreditAmount">
+          <Key>
+            <PropertyRef Name="CurrId" />
+          </Key>
+          <Property Name="CurrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <Property Name="CurrCredit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LastCredit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CreditTransLogs" Relationship="Self.FK_CreditTransLog_CurrCreditAmount" FromRole="CurrCreditAmount" ToRole="CreditTransLog" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Poskod" Type="Int32" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CutMethod">
+          <Key>
+            <PropertyRef Name="cutmethod_Id" />
+          </Key>
+          <Property Name="cutmethod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cutmethod_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cutmethod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cutmethod_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Createby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Deleteby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_CutMethod" FromRole="CutMethod" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="DeliveryMethod">
+          <Key>
+            <PropertyRef Name="delivery_Id" />
+          </Key>
+          <Property Name="delivery_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="delivery_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="delivery_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="delivery_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_DeliveryMethod" FromRole="DeliveryMethod" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="ShipDate" Type="DateTime" Precision="0" />
+          <Property Name="ShipVia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LaminationMethod">
+          <Key>
+            <PropertyRef Name="lamination_id" />
+          </Key>
+          <Property Name="lamination_id" Type="Int32" Nullable="false" />
+          <Property Name="lamination_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lamination_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lamination_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Createby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_LaminationMethod" FromRole="LaminationMethod" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="meterial_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDatetime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeletedDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_Material" FromRole="Material" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="OrderQty" Type="Int32" />
+          <Property Name="SalesDiscount" Type="Decimal" Precision="2" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PrintingMode">
+          <Key>
+            <PropertyRef Name="printing_id" />
+          </Key>
+          <Property Name="printing_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="printing_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="printing_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="printing_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Createby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Deleteby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_PrintingMode" FromRole="PrintingMode" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="priority_Id" />
+          </Key>
+          <Property Name="priority_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priority_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="priority_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="priority_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_Priority" FromRole="Priority" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="ProductCatId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductCatId" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AgentPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CustomerPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCatId" />
+          </Key>
+          <Property Name="ProductCatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCatCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCatDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductsubCategories" Relationship="Self.FK_ProductsubCategory_ProductCategory" FromRole="ProductCategory" ToRole="ProductsubCategory" />
+        </EntityType>
+        <EntityType Name="ProductsubCategory">
+          <Key>
+            <PropertyRef Name="ProductsubCatId" />
+          </Key>
+          <Property Name="ProductsubCatId" Type="Int32" Nullable="false" />
+          <Property Name="ProductCatId" Type="Int32" />
+          <Property Name="ProductsubCatCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductsubCatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductsubCatDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductsubCategory_ProductCategory" FromRole="ProductsubCategory" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="Shape">
+          <Key>
+            <PropertyRef Name="shape_Id" />
+          </Key>
+          <Property Name="shape_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shape_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shape_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shape_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stickers" Relationship="Self.FK_Sticker_Shape" FromRole="Shape" ToRole="Sticker" />
+        </EntityType>
+        <EntityType Name="Sticker">
+          <Key>
+            <PropertyRef Name="StikerId" />
+          </Key>
+          <Property Name="StikerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="material_id" Type="Int32" />
+          <Property Name="shape_id" Type="Int32" />
+          <Property Name="printing_id" Type="Int32" />
+          <Property Name="cutmethod_Id" Type="Int32" />
+          <Property Name="lamination_id" Type="Int32" />
+          <Property Name="delivery_Id" Type="Int32" />
+          <Property Name="priority_Id" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CutMethod" Relationship="Self.FK_Sticker_CutMethod" FromRole="Sticker" ToRole="CutMethod" />
+          <NavigationProperty Name="DeliveryMethod" Relationship="Self.FK_Sticker_DeliveryMethod" FromRole="Sticker" ToRole="DeliveryMethod" />
+          <NavigationProperty Name="LaminationMethod" Relationship="Self.FK_Sticker_LaminationMethod" FromRole="Sticker" ToRole="LaminationMethod" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Sticker_Material" FromRole="Sticker" ToRole="Material" />
+          <NavigationProperty Name="PrintingMode" Relationship="Self.FK_Sticker_PrintingMode" FromRole="Sticker" ToRole="PrintingMode" />
+          <NavigationProperty Name="Priority" Relationship="Self.FK_Sticker_Priority" FromRole="Sticker" ToRole="Priority" />
+          <NavigationProperty Name="Shape" Relationship="Self.FK_Sticker_Shape" FromRole="Sticker" ToRole="Shape" />
+          <Property Name="width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="hight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CreditTransLog">
+          <Key>
+            <PropertyRef Name="TrnsId" />
+            <PropertyRef Name="CurrId" />
+            <PropertyRef Name="CreateDateTime" />
+          </Key>
+          <Property Name="TrnsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrId" Type="Int32" Nullable="false" />
+          <Property Name="CurrCredit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DeductCredit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeleteDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CurrCreditAmount" Relationship="Self.FK_CreditTransLog_CurrCreditAmount" FromRole="CreditTransLog" ToRole="CurrCreditAmount" />
+        </EntityType>
+        <Association Name="FK_CreditTransLog_CurrCreditAmount">
+          <End Role="CurrCreditAmount" Type="Self.CurrCreditAmount" Multiplicity="1" />
+          <End Role="CreditTransLog" Type="Self.CreditTransLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrCreditAmount">
+              <PropertyRef Name="CurrId" />
+            </Principal>
+            <Dependent Role="CreditTransLog">
+              <PropertyRef Name="CurrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_CutMethod">
+          <End Role="CutMethod" Type="Self.CutMethod" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CutMethod">
+              <PropertyRef Name="cutmethod_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="cutmethod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_DeliveryMethod">
+          <End Role="DeliveryMethod" Type="Self.DeliveryMethod" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryMethod">
+              <PropertyRef Name="delivery_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="delivery_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_LaminationMethod">
+          <End Role="LaminationMethod" Type="Self.LaminationMethod" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LaminationMethod">
+              <PropertyRef Name="lamination_id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="lamination_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="material_id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_PrintingMode">
+          <End Role="PrintingMode" Type="Self.PrintingMode" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintingMode">
+              <PropertyRef Name="printing_id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="printing_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="priority_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="priority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsubCategory_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="ProductsubCategory" Type="Self.ProductsubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCatId" />
+            </Principal>
+            <Dependent Role="ProductsubCategory">
+              <PropertyRef Name="ProductCatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sticker_Shape">
+          <End Role="Shape" Type="Self.Shape" Multiplicity="0..1" />
+          <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="shape_Id" />
+            </Principal>
+            <Dependent Role="Sticker">
+              <PropertyRef Name="shape_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="genkPrintDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="CurrCreditAmounts" EntityType="Self.CurrCreditAmount" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="CutMethods" EntityType="Self.CutMethod" />
+          <EntitySet Name="DeliveryMethods" EntityType="Self.DeliveryMethod" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="LaminationMethods" EntityType="Self.LaminationMethod" />
+          <EntitySet Name="Materials" EntityType="Self.Material" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="PrintingModes" EntityType="Self.PrintingMode" />
+          <EntitySet Name="Priorities" EntityType="Self.Priority" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductsubCategories" EntityType="Self.ProductsubCategory" />
+          <EntitySet Name="Shapes" EntityType="Self.Shape" />
+          <EntitySet Name="Stickers" EntityType="Self.Sticker" />
+          <EntitySet Name="CreditTransLogs" EntityType="Self.CreditTransLog" />
+          <AssociationSet Name="FK_CreditTransLog_CurrCreditAmount" Association="Self.FK_CreditTransLog_CurrCreditAmount">
+            <End Role="CurrCreditAmount" EntitySet="CurrCreditAmounts" />
+            <End Role="CreditTransLog" EntitySet="CreditTransLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_CutMethod" Association="Self.FK_Sticker_CutMethod">
+            <End Role="CutMethod" EntitySet="CutMethods" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_DeliveryMethod" Association="Self.FK_Sticker_DeliveryMethod">
+            <End Role="DeliveryMethod" EntitySet="DeliveryMethods" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_LaminationMethod" Association="Self.FK_Sticker_LaminationMethod">
+            <End Role="LaminationMethod" EntitySet="LaminationMethods" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_Material" Association="Self.FK_Sticker_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_PrintingMode" Association="Self.FK_Sticker_PrintingMode">
+            <End Role="PrintingMode" EntitySet="PrintingModes" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_Priority" Association="Self.FK_Sticker_Priority">
+            <End Role="Priority" EntitySet="Priorities" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsubCategory_ProductCategory" Association="Self.FK_ProductsubCategory_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="ProductsubCategory" EntitySet="ProductsubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sticker_Shape" Association="Self.FK_Sticker_Shape">
+            <End Role="Shape" EntitySet="Shapes" />
+            <End Role="Sticker" EntitySet="Stickers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="genkPrintDbModelStoreContainer" CdmEntityContainer="genkPrintDbEntities">
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrCreditAmounts">
+            <EntityTypeMapping TypeName="genkPrintDbModel.CurrCreditAmount">
+              <MappingFragment StoreEntitySet="CurrCreditAmount">
+                <ScalarProperty Name="CurrId" ColumnName="CurrId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="CurrCredit" ColumnName="CurrCredit" />
+                <ScalarProperty Name="LastCredit" ColumnName="LastCredit" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerAddress1" ColumnName="CustomerAddress1" />
+                <ScalarProperty Name="CustomerAddress2" ColumnName="CustomerAddress2" />
+                <ScalarProperty Name="Poskod" ColumnName="Poskod" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CutMethods">
+            <EntityTypeMapping TypeName="genkPrintDbModel.CutMethod">
+              <MappingFragment StoreEntitySet="CutMethod">
+                <ScalarProperty Name="cutmethod_Id" ColumnName="cutmethod_Id" />
+                <ScalarProperty Name="cutmethod_code" ColumnName="cutmethod_code" />
+                <ScalarProperty Name="cutmethod_name" ColumnName="cutmethod_name" />
+                <ScalarProperty Name="cutmethod_desc" ColumnName="cutmethod_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Createby" ColumnName="Createby" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="Deleteby" ColumnName="Deleteby" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryMethods">
+            <EntityTypeMapping TypeName="genkPrintDbModel.DeliveryMethod">
+              <MappingFragment StoreEntitySet="DeliveryMethod">
+                <ScalarProperty Name="delivery_Id" ColumnName="delivery_Id" />
+                <ScalarProperty Name="delivery_code" ColumnName="delivery_code" />
+                <ScalarProperty Name="delivery_name" ColumnName="delivery_name" />
+                <ScalarProperty Name="delivery_desc" ColumnName="delivery_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="DeleteBy" ColumnName="DeleteBy" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
+                <ScalarProperty Name="ShipVia" ColumnName="ShipVia" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaminationMethods">
+            <EntityTypeMapping TypeName="genkPrintDbModel.LaminationMethod">
+              <MappingFragment StoreEntitySet="LaminationMethod">
+                <ScalarProperty Name="lamination_id" ColumnName="lamination_id" />
+                <ScalarProperty Name="lamination_code" ColumnName="lamination_code" />
+                <ScalarProperty Name="lamination_name" ColumnName="lamination_name" />
+                <ScalarProperty Name="lamination_desc" ColumnName="lamination_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Createby" ColumnName="Createby" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="DeleteBy" ColumnName="DeleteBy" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="meterial_code" ColumnName="meterial_code" />
+                <ScalarProperty Name="material_name" ColumnName="material_name" />
+                <ScalarProperty Name="material_desc" ColumnName="material_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedDatetime" ColumnName="DeletedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="genkPrintDbModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="SalesDiscount" ColumnName="SalesDiscount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintingModes">
+            <EntityTypeMapping TypeName="genkPrintDbModel.PrintingMode">
+              <MappingFragment StoreEntitySet="PrintingMode">
+                <ScalarProperty Name="printing_id" ColumnName="printing_id" />
+                <ScalarProperty Name="printing_code" ColumnName="printing_code" />
+                <ScalarProperty Name="printing_name" ColumnName="printing_name" />
+                <ScalarProperty Name="printing_desc" ColumnName="printing_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Createby" ColumnName="Createby" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="Deleteby" ColumnName="Deleteby" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priorities">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="priority_Id" ColumnName="priority_Id" />
+                <ScalarProperty Name="priority_code" ColumnName="priority_code" />
+                <ScalarProperty Name="priority_name" ColumnName="priority_name" />
+                <ScalarProperty Name="priority_desc" ColumnName="priority_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="DeleteBy" ColumnName="DeleteBy" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductCatId" ColumnName="ProductCatId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductDesc" ColumnName="ProductDesc" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="AgentPrice" ColumnName="AgentPrice" />
+                <ScalarProperty Name="CustomerPrice" ColumnName="CustomerPrice" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="genkPrintDbModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="ProductCatId" ColumnName="ProductCatId" />
+                <ScalarProperty Name="ProductCatCode" ColumnName="ProductCatCode" />
+                <ScalarProperty Name="ProductCatName" ColumnName="ProductCatName" />
+                <ScalarProperty Name="ProductCatDesc" ColumnName="ProductCatDesc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsubCategories">
+            <EntityTypeMapping TypeName="genkPrintDbModel.ProductsubCategory">
+              <MappingFragment StoreEntitySet="ProductsubCategory">
+                <ScalarProperty Name="ProductsubCatId" ColumnName="ProductsubCatId" />
+                <ScalarProperty Name="ProductCatId" ColumnName="ProductCatId" />
+                <ScalarProperty Name="ProductsubCatCode" ColumnName="ProductsubCatCode" />
+                <ScalarProperty Name="ProductsubCatName" ColumnName="ProductsubCatName" />
+                <ScalarProperty Name="ProductsubCatDesc" ColumnName="ProductsubCatDesc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shapes">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Shape">
+              <MappingFragment StoreEntitySet="Shape">
+                <ScalarProperty Name="shape_Id" ColumnName="shape_Id" />
+                <ScalarProperty Name="shape_code" ColumnName="shape_code" />
+                <ScalarProperty Name="shape_name" ColumnName="shape_name" />
+                <ScalarProperty Name="shape_desc" ColumnName="shape_desc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="DeleteBy" ColumnName="DeleteBy" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stickers">
+            <EntityTypeMapping TypeName="genkPrintDbModel.Sticker">
+              <MappingFragment StoreEntitySet="Sticker">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="hight" ColumnName="hight" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="StikerId" ColumnName="StikerId" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="shape_id" ColumnName="shape_id" />
+                <ScalarProperty Name="printing_id" ColumnName="printing_id" />
+                <ScalarProperty Name="cutmethod_Id" ColumnName="cutmethod_Id" />
+                <ScalarProperty Name="lamination_id" ColumnName="lamination_id" />
+                <ScalarProperty Name="delivery_Id" ColumnName="delivery_Id" />
+                <ScalarProperty Name="priority_Id" ColumnName="priority_Id" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="DeleteBy" ColumnName="DeleteBy" />
+                <ScalarProperty Name="DeleteDatetime" ColumnName="DeleteDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditTransLogs">
+            <EntityTypeMapping TypeName="genkPrintDbModel.CreditTransLog">
+              <MappingFragment StoreEntitySet="CreditTransLog">
+                <ScalarProperty Name="TrnsId" ColumnName="TrnsId" />
+                <ScalarProperty Name="CurrId" ColumnName="CurrId" />
+                <ScalarProperty Name="CurrCredit" ColumnName="CurrCredit" />
+                <ScalarProperty Name="DeductCredit" ColumnName="DeductCredit" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="DeleteDateTime" ColumnName="DeleteDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

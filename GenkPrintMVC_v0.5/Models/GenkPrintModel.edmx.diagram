@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b282653aa2db47eba87b580b935969ca" Name="Diagram1">
+        <EntityTypeShape EntityType="genkPrintDbModel.Branch" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.CurrCreditAmount" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Customer" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.CutMethod" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.DeliveryMethod" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Invoice" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.LaminationMethod" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Material" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.OrderDetail" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.PrintingMode" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Priority" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Product" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.ProductCategory" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.ProductsubCategory" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Shape" Width="1.5" PointX="0.75" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.Sticker" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="genkPrintDbModel.CreditTransLog" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="genkPrintDbModel.FK_CreditTransLog_CurrCreditAmount" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_CutMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_DeliveryMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_LaminationMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_PrintingMode" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_ProductsubCategory_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="genkPrintDbModel.FK_Sticker_Shape" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

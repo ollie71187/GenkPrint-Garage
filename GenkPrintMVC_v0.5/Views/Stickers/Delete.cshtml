@@ -1,0 +1,152 @@
+﻿@model GenkPrintMVC_v0._5.Models.Sticker
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sticker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDelete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDatetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDatetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeleteBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeleteBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeleteDatetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeleteDatetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CutMethod.cutmethod_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CutMethod.cutmethod_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryMethod.delivery_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryMethod.delivery_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LaminationMethod.lamination_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LaminationMethod.lamination_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Material.meterial_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material.meterial_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintingMode.printing_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintingMode.printing_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority.priority_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority.priority_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shape.shape_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shape.shape_code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
