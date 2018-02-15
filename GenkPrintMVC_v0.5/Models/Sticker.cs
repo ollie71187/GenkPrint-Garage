@@ -31,6 +31,7 @@ namespace GenkPrintMVC_v0._5.Models
         public Nullable<decimal> width { get; set; }
         public Nullable<decimal> hight { get; set; }
         public Nullable<int> Quantity { get; set; }
+        public string userId { get; set; }
     
         public virtual CutMethod CutMethod { get; set; }
         public virtual DeliveryMethod DeliveryMethod { get; set; }

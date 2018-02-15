@@ -4,7 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="genkPrintDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="genkPrintDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'genkPrintDB.dbo.Branch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="BranchId" />
@@ -19,14 +21,14 @@
           <Property Name="DeleteDateTime" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'genkPrintDB.dbo.CreditTransLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CreditTransLog">
           <Key>
             <PropertyRef Name="TrnsId" />
             <PropertyRef Name="CurrId" />
             <PropertyRef Name="CreateDateTime" />
           </Key>
-          <Property Name="TrnsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrnsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CurrId" Type="int" Nullable="false" />
           <Property Name="CurrCredit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="DeductCredit" Type="decimal" Precision="18" Scale="2" />
@@ -37,7 +39,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="CurrId" />
           </Key>
-          <Property Name="CurrId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AgentId" Type="int" Nullable="false" />
           <Property Name="CurrCredit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="LastCredit" Type="decimal" Precision="18" Scale="2" />
@@ -47,6 +49,8 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Property Name="UpdateDateTime" Type="datetime" />
           <Property Name="DeleteDate" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'genkPrintDB.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -69,7 +73,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="cutmethod_Id" />
           </Key>
-          <Property Name="cutmethod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cutmethod_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="cutmethod_code" Type="varchar" MaxLength="50" />
           <Property Name="cutmethod_name" Type="varchar" MaxLength="50" />
           <Property Name="cutmethod_desc" Type="varchar" MaxLength="50" />
@@ -84,7 +88,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="delivery_Id" />
           </Key>
-          <Property Name="delivery_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delivery_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="delivery_code" Type="varchar" MaxLength="50" />
           <Property Name="delivery_name" Type="varchar" MaxLength="50" />
           <Property Name="delivery_desc" Type="varchar" MaxLength="50" />
@@ -95,6 +99,8 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
           <Property Name="DeleteDatetime" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'genkPrintDB.dbo.Invoice' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="InvoiceId" />
@@ -128,7 +134,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="material_id" />
           </Key>
-          <Property Name="material_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="material_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="meterial_code" Type="varchar" MaxLength="50" />
           <Property Name="material_name" Type="varchar" MaxLength="50" />
           <Property Name="material_desc" Type="varchar" MaxLength="50" />
@@ -139,9 +145,13 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Property Name="DeletedBy" Type="varchar" MaxLength="50" />
           <Property Name="DeletedDatetime" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'genkPrintDB.dbo.OrderDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="OrderDetails">
           <Key>
             <PropertyRef Name="OrderDetailId" />
+            
+            
           </Key>
           <Property Name="OrderDetailId" Type="int" Nullable="false" />
           <Property Name="InvoiceId" Type="int" Nullable="false" />
@@ -158,7 +168,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="printing_id" />
           </Key>
-          <Property Name="printing_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="printing_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="printing_code" Type="varchar" MaxLength="50" />
           <Property Name="printing_name" Type="varchar" MaxLength="50" />
           <Property Name="printing_desc" Type="varchar" MaxLength="50" />
@@ -173,7 +183,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="priority_Id" />
           </Key>
-          <Property Name="priority_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="priority_code" Type="varchar" MaxLength="50" />
           <Property Name="priority_name" Type="varchar" MaxLength="50" />
           <Property Name="priority_desc" Type="varchar" MaxLength="50" />
@@ -184,6 +194,8 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Property Name="DeleteBy" Type="varchar" MaxLength="50" />
           <Property Name="DeleteDatetime" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'genkPrintDB.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -207,7 +219,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="ProductCatId" />
           </Key>
-          <Property Name="ProductCatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCatId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductCatCode" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductCatName" Type="nvarchar(max)" />
           <Property Name="ProductCatDesc" Type="nvarchar(max)" />
@@ -236,7 +248,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Key>
             <PropertyRef Name="shape_Id" />
           </Key>
-          <Property Name="shape_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shape_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="shape_code" Type="varchar" MaxLength="50" />
           <Property Name="shape_name" Type="varchar" MaxLength="50" />
           <Property Name="shape_desc" Type="varchar" MaxLength="50" />
@@ -252,6 +264,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
             <PropertyRef Name="StikerId" />
           </Key>
           <Property Name="StikerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="material_id" Type="int" />
           <Property Name="shape_id" Type="int" />
           <Property Name="printing_id" Type="int" />
@@ -269,30 +282,6 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Property Name="hight" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Quantity" Type="int" />
         </EntityType>
-        <Association Name="FK_CreditTransLog_CurrCreditAmount">
-          <End Role="CurrCreditAmount" Type="Self.CurrCreditAmount" Multiplicity="1" />
-          <End Role="CreditTransLog" Type="Self.CreditTransLog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CurrCreditAmount">
-              <PropertyRef Name="CurrId" />
-            </Principal>
-            <Dependent Role="CreditTransLog">
-              <PropertyRef Name="CurrId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductsubCategory_ProductCategory">
-          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
-          <End Role="ProductsubCategory" Type="Self.ProductsubCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductCategory">
-              <PropertyRef Name="ProductCatId" />
-            </Principal>
-            <Dependent Role="ProductsubCategory">
-              <PropertyRef Name="ProductCatId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sticker_CutMethod">
           <End Role="CutMethod" Type="Self.CutMethod" Multiplicity="0..1" />
           <End Role="Sticker" Type="Self.Sticker" Multiplicity="*" />
@@ -378,22 +367,29 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="genkPrintDbModelStoreContainer">
-          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrCreditAmount" EntityType="Self.CurrCreditAmount" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CutMethod" EntityType="Self.CutMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryMethod" EntityType="Self.DeliveryMethod" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LaminationMethod" EntityType="Self.LaminationMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrintingMode" EntityType="Self.PrintingMode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsubCategory" EntityType="Self.ProductsubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shape" EntityType="Self.Shape" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sticker" EntityType="Self.Sticker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Branch].[BranchId] AS [BranchId], 
+    [Branch].[BranchName] AS [BranchName], 
+    [Branch].[BranchCode] AS [BranchCode], 
+    [Branch].[IsActive] AS [IsActive], 
+    [Branch].[IsDelete] AS [IsDelete], 
+    [Branch].[CreateDateTime] AS [CreateDateTime], 
+    [Branch].[UpdateDateTime] AS [UpdateDateTime], 
+    [Branch].[DeleteDateTime] AS [DeleteDateTime]
+    FROM [dbo].[Branch] AS [Branch]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="CreditTransLog" EntityType="Self.CreditTransLog" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CreditTransLog].[TrnsId] AS [TrnsId], 
@@ -404,14 +400,67 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
     [CreditTransLog].[DeleteDateTime] AS [DeleteDateTime]
     FROM [dbo].[CreditTransLog] AS [CreditTransLog]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_CreditTransLog_CurrCreditAmount" Association="Self.FK_CreditTransLog_CurrCreditAmount">
-            <End Role="CurrCreditAmount" EntitySet="CurrCreditAmount" />
-            <End Role="CreditTransLog" EntitySet="CreditTransLog" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductsubCategory_ProductCategory" Association="Self.FK_ProductsubCategory_ProductCategory">
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-            <End Role="ProductsubCategory" EntitySet="ProductsubCategory" />
-          </AssociationSet>
+          <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Customer].[CustomerId] AS [CustomerId], 
+    [Customer].[CustomerName] AS [CustomerName], 
+    [Customer].[CustomerAddress1] AS [CustomerAddress1], 
+    [Customer].[CustomerAddress2] AS [CustomerAddress2], 
+    [Customer].[Poskod] AS [Poskod], 
+    [Customer].[State] AS [State], 
+    [Customer].[Phone] AS [Phone], 
+    [Customer].[Email] AS [Email], 
+    [Customer].[IsActive] AS [IsActive], 
+    [Customer].[IsDelete] AS [IsDelete], 
+    [Customer].[CreateDateTime] AS [CreateDateTime], 
+    [Customer].[UpdateDateTime] AS [UpdateDateTime], 
+    [Customer].[DeleteDateTime] AS [DeleteDateTime]
+    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Invoice].[InvoiceId] AS [InvoiceId], 
+    [Invoice].[CustomerId] AS [CustomerId], 
+    [Invoice].[IsActive] AS [IsActive], 
+    [Invoice].[IsDelete] AS [IsDelete], 
+    [Invoice].[ShipDate] AS [ShipDate], 
+    [Invoice].[ShipVia] AS [ShipVia], 
+    [Invoice].[CreateDateTime] AS [CreateDateTime], 
+    [Invoice].[UpdateDateTime] AS [UpdateDateTime], 
+    [Invoice].[DeleteDateTime] AS [DeleteDateTime]
+    FROM [dbo].[Invoice] AS [Invoice]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderDetails].[OrderDetailId] AS [OrderDetailId], 
+    [OrderDetails].[InvoiceId] AS [InvoiceId], 
+    [OrderDetails].[ProductId] AS [ProductId], 
+    [OrderDetails].[OrderQty] AS [OrderQty], 
+    [OrderDetails].[SalesDiscount] AS [SalesDiscount], 
+    [OrderDetails].[IsActive] AS [IsActive], 
+    [OrderDetails].[IsDelete] AS [IsDelete], 
+    [OrderDetails].[CreateDateTime] AS [CreateDateTime], 
+    [OrderDetails].[UpdateDateTime] AS [UpdateDateTime], 
+    [OrderDetails].[DeleteDateTime] AS [DeleteDateTime]
+    FROM [dbo].[OrderDetails] AS [OrderDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Product" EntityType="Self.Product" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Product].[ProductId] AS [ProductId], 
+    [Product].[ProductCatId] AS [ProductCatId], 
+    [Product].[ProductName] AS [ProductName], 
+    [Product].[ProductDesc] AS [ProductDesc], 
+    [Product].[SKU] AS [SKU], 
+    [Product].[ProductPrice] AS [ProductPrice], 
+    [Product].[AgentPrice] AS [AgentPrice], 
+    [Product].[CustomerPrice] AS [CustomerPrice], 
+    [Product].[IsActive] AS [IsActive], 
+    [Product].[IsDelete] AS [IsDelete], 
+    [Product].[CreateDateTime] AS [CreateDateTime], 
+    [Product].[UpdateDateTime] AS [UpdateDateTime], 
+    [Product].[DeleteDateTime] AS [DeleteDateTime]
+    FROM [dbo].[Product] AS [Product]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Sticker_CutMethod" Association="Self.FK_Sticker_CutMethod">
             <End Role="CutMethod" EntitySet="CutMethod" />
             <End Role="Sticker" EntitySet="Sticker" />
@@ -710,6 +759,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <Property Name="width" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="hight" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Quantity" Type="Int32" />
+          <Property Name="userId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CreditTransLog">
           <Key>
@@ -1138,6 +1188,7 @@ warning 6002: The table/view 'genkPrintDb.dbo.CreditTransLog' does not have a pr
           <EntitySetMapping Name="Stickers">
             <EntityTypeMapping TypeName="genkPrintDbModel.Sticker">
               <MappingFragment StoreEntitySet="Sticker">
+                <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="hight" ColumnName="hight" />
                 <ScalarProperty Name="width" ColumnName="width" />

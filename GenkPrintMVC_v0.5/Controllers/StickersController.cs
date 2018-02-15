@@ -7,21 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GenkPrintMVC_v0._5.Models;
+using Microsoft.AspNet.Identity;
+
 
 namespace GenkPrintMVC_v0._5.Controllers
 {
     public class StickersController : Controller
     {
         private genkPrintDbEntities db = new genkPrintDbEntities();
+        private string userid = User.Identity.GetUserId();
 
         // GET: Stickers
+        [Authorize]
         public ActionResult Index()
         {
+            
             var stickers = db.Stickers.Include(s => s.CutMethod).Include(s => s.DeliveryMethod).Include(s => s.LaminationMethod).Include(s => s.Material).Include(s => s.PrintingMode).Include(s => s.Priority).Include(s => s.Shape);
-            return View(stickers.ToList());
+            return View(stickers.Where(s => s.userId == userid).ToList());
         }
 
         // GET: Stickers/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,8 +43,11 @@ namespace GenkPrintMVC_v0._5.Controllers
         }
 
         // GET: Stickers/Create
+        [Authorize]
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
+            ViewBag.UserID = userId;
             ViewBag.cutmethod_Id = new SelectList(db.CutMethods, "cutmethod_Id", "cutmethod_name");
             ViewBag.delivery_Id = new SelectList(db.DeliveryMethods, "delivery_Id", "delivery_name");
             ViewBag.lamination_id = new SelectList(db.LaminationMethods, "lamination_id", "lamination_name");
@@ -56,8 +65,11 @@ namespace GenkPrintMVC_v0._5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StikerId,material_id,shape_id,printing_id,cutmethod_Id,lamination_id,delivery_Id,priority_Id,IsActive,IsDelete,CreateBy,CreateDatetime,DeleteBy,DeleteDatetime,width,hight,Quantity")] Sticker sticker)
         {
+
+            ModelState.Remove("StikerId");
             if (ModelState.IsValid)
             {
+                sticker.userId = User.Identity.GetUserId();
                 db.Stickers.Add(sticker);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -74,6 +86,7 @@ namespace GenkPrintMVC_v0._5.Controllers
         }
 
         // GET: Stickers/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -119,6 +132,7 @@ namespace GenkPrintMVC_v0._5.Controllers
         }
 
         // GET: Stickers/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
